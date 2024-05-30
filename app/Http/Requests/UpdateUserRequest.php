@@ -21,7 +21,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd($this->user);    
+        dd($this->user);    
         return [
             'name' => 'required|string|max:250',
             'email' => 'required|string|email:rfc,dns|max:250|unique:users,email,'.$this->user->id,

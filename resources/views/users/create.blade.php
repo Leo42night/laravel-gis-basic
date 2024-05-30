@@ -8,7 +8,7 @@
                     <i class='fas fa-angle-double-left' style='font-size:;color:'></i>
                     Back</button>
             </a>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header fw-bold">Add new data User</div>
                     <div class="card-body">
@@ -16,15 +16,9 @@
                             class="row">
                             @csrf
                             <div class="form-group col-md-6 mb-3">
-                                <label for="nama">Nama</label>
-                                <input type="text"
-                                    class="form-control @error('nama')
-                                    is-invalid
-                                @enderror"
-                                    name="nama" id="nama">
-                                @error('nama')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <label for="name">Nama</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name">
+                                @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="form-group col-md-6 mb-3">
@@ -39,20 +33,20 @@
 
                             <div class="form-group col-md-6 mb-3">
                                 <label for="password">Password</label>
-                                <input type="password" value="{{ old('password') }}"
+                                <input type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
-                                    id="password" placeholder="******">
-                                @error('pasword')
+                                    id="password">
+                                @error('password')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="form-group col-md-6 mb-3">
-                                <label for="password_confirm">Confirm Password</label>
-                                <input type="password" value="{{ old('password') }}"
-                                    class="form-control @error('password') is-invalid @enderror" name="password_confirm"
-                                    id="password_confirm" placeholder="******">
-                                @error('pasword')
+                                <label for="password_confirmation">Confirm Password</label>
+                                <input type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password_confirmation"
+                                    id="password_confirmation">
+                                @error('password')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

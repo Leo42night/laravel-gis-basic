@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\File;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -23,7 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'gambar',
-        'keuangan'
+        'uang'
     ];
 
     /**
@@ -44,4 +45,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getImageAsset()
+    {
+        // if ($this->image) {
+        //     return asset('storage/ImageSpots/'.$this->image);
+        // }
+        if (File::exists('upload/user/' .$this->gambar)) {
+            return asset('/upload/user/'.$this->gambar);
+        }
+
+        return 'https://placehold.co/50x50?text=No+Image';
+    }
 }

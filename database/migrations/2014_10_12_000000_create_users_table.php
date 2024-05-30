@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('gambar')->nullable();
+            $table->decimal('uang',9,2)->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

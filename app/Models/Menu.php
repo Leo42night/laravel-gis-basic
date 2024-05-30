@@ -19,9 +19,6 @@ class Menu extends Model
     protected $guarded = [];
     public function getImageAsset()
     {
-        // if ($this->image) {
-        //     return asset('storage/ImageSpots/'.$this->image);
-        // }
         if (File::exists('upload/menu/' . $this->gambar)) {
             return asset('/upload/menu/'.$this->gambar);
         }

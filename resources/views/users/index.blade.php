@@ -33,6 +33,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Role</th>
+                                    <th>Saldo</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -70,6 +71,8 @@
                         data: 'name'
                     }, {
                         data: 'role'
+                    }, {
+                        data: 'uang'
                     },
                     {
                         data: 'action'

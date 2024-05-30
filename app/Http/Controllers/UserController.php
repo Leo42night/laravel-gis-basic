@@ -50,6 +50,14 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($request->password);
         $user = User::create($input);
+
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $uploadFile = $file->hashName();
+            $file->move('upload/user/', $uploadFile);
+            $user->gambar = $uploadFile;
+        }
+        
         $user->assignRole($request->roles);
         return redirect()->route('users.index')
             ->withSuccess('New user is added successfully.');
@@ -58,12 +66,13 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user): View
+    public function show(User $user)
     {
-        // dd($user);
-        return view('users.show', [
-            'user' => $user
-        ]);
+        dd($user);
+        return redirect()->route('users.edit', $user)->withSuccess('User is Updated.');
+        // return view('users.edit', [
+        //     'user' => $user
+        // ]);
     }
 
     /**
@@ -91,6 +100,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
+        dd($request);
         $input = $request->all();
         if (!empty($request->password)) {
             $input['password'] = Hash::make($request->password);
@@ -99,7 +109,7 @@ class UserController extends Controller
         }
         $user->update($input);
         $user->syncRoles($request->roles);
-        return redirect()->back()
+        return redirect()->route('users.index')
             ->withSuccess('User is updated successfully.');
     }
 
